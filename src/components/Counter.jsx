@@ -1,19 +1,26 @@
 import { useState } from "react";
-const Counter = () => {
+const Counter = (props) => {
 
     const [count, setCount] = useState(0);
+
+    const addSummary = props.addSummary;
+
     const incrCnt = () => {
-        setCount(count + 1);
+        const newCount = count + 1;
+        setCount(newCount);
+        addSummary(1);
     };
 
     const decrCnt = () => {
-        setCount(count - 1);
+        const newCount = count - 1;
+        setCount(newCount);
+        addSummary(-1);
     };
 
     return (
         <div>
             <button onClick={incrCnt}>+</button>
-            <span>{count}</span>
+            <span>{ count }</span>
             <button onClick={decrCnt}>-</button>
         </div>
     );

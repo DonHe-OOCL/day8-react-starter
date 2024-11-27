@@ -6,10 +6,12 @@ const MultipleCounter = () => {
 
     const [size, setSize] = useState(0);
 
+    const [summary, setSummary] = useState(0);
+
     return (
         <div>
-            <CounterGroupGenerator size={size} setSize={setSize}/>
-            <CounterGroup size={size}/>
+            <CounterGroupGenerator size={size} setSize={setSize} setSummary={setSummary}/>
+            <CounterGroup size={size} summary={summary} setSummary={setSummary}/>
         </div>
     );
 

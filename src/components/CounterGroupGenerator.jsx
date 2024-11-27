@@ -14,6 +14,9 @@ const CounterGroupGenerator = (props) => {
     }
 
     const handleReset = () => {
+        if (size !== props.size) {
+            props.setSummary(0)
+        }
         props.setSize(size)
     }
 
