@@ -1,20 +1,20 @@
 import {useState} from 'react'
 const CounterGroupGenerator = (props) => {
 
-    const [size, setSize] = useState(props.size)
+    const [size, setSize] = useState(0)
 
     const handleChange = (event) => {
-        let cnt = event.target.value
-        if (cnt < 0) {
-            cnt = 0
-        } else if (cnt > 20) {
-            cnt = 20
+        if (event.target.value < 0) {
+            setSize(0)
+        } else if (event.target.value > 20) {
+            setSize(20)
+        } else {
+            setSize(event.target.value)
         }
-        setSize(cnt)
     }
 
     const handleReset = () => {
-        setSize(0)
+        props.setSize(size)
     }
 
     return (
