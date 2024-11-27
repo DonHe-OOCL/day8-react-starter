@@ -1,29 +1,39 @@
-import Counter from "./Counter";
-import {useState} from 'react'
+import React, { useEffect, useState } from 'react';
+import Counter from './Counter';
 
 const CounterGroup = (props) => {
-
-    const { size } = props;
-
-    const addSummary = (count) => {
-        const newSummary = props.summary + count;
-        props.setSummary(newSummary);
-    }
-
     const counters = [];
+    const size =props.size
 
-    for (let index = 0; index < size; index++) {
+    const [countersState, setCountersState] = useState(Array(size).fill(0));
+
+
+    useEffect(() => {
+        setCountersState(Array(size).fill(0));
+    }, [size]);
+
+    const handleChange = (index, newCount) => {
+        const updatedCounters = [...countersState];
+        updatedCounters[index] = newCount;
+        setCountersState(updatedCounters);
+    };
+
+    const total = countersState.reduce((sum, count) => sum + count, 0);
+
+    for (let i = 0; i < size; i++) {
         counters.push(
-            <Counter key={index + Math.random()} addSummary={addSummary}/>
+            <Counter key={i} onChange={(newCount) => handleChange(i, newCount)} />
         );
     }
 
     return (
-        <div>
-            sum: {props.summary}
+        <div className="counter-group">
+            <div className="total">
+                <h4>Total Sum: {total}</h4>
+            </div>
             {counters}
         </div>
     );
-}
+};
 
-export default CounterGroup
+export default CounterGroup;
