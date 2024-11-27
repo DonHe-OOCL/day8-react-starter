@@ -1,5 +1,6 @@
 import CounterGroupGenerator from "./CounterGroupGenerator";
 import {useState} from 'react'
+import CounterGroup from "./CounterGroup";
 
 const MultipleCounter = () => {
 
@@ -8,6 +9,7 @@ const MultipleCounter = () => {
     return (
         <div>
             <CounterGroupGenerator size={size} setSize={setSize}/>
+            <CounterGroup size={size}/>
         </div>
     );
 
